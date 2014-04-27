@@ -3,7 +3,7 @@
 
 Who doesn’t love Zork?. Who doesn’t love Arduinos? Why not grab a few cheap components and build an Arduino gadget capable of playing all the classic Infocom games on your TV from the comfort of your couch.
 
-A few years ago I ported a z-machine player to a [little arduino-like device](http://rossumblog.com/http://rossumblog.com/2011/04/19/zork-for-the-microtouch/). Ever since I have been meaning to get around to a project that support TV out and a real keyboard that would rekindle memories of long nights playing Zork on my Atari 800.
+A few years ago I ported a z-machine player to a [little arduino-like device](http://rossumblog.com/2011/04/19/zork-for-the-microtouch/). Ever since I have been meaning to get around to a project that support TV out and a real keyboard that would rekindle memories of long nights playing Zork on my Atari 800.
 
 ##You will need:
 * Arduino UNO, Pro, Pro Mini or equivalent.

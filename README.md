@@ -60,7 +60,7 @@ WebTV keyboards come in various guises: WebTV, MsnTV, Displayer, UltimateTV etc.
 
 IR receivers come in a number of different forms. You are looking for a 38khz version with a known pinout: Some have the center pin as GND, some as V+. Make sure you know what kind you have. When in doubt, Adafruit.
 
-I like using iPhone/iPod video cables for TV projects. Because the no longer work (their MFI chip long since revoked) they are inexpensive, are labeled internally and have a strain relief grommet.
+I like using iPhone/iPod video cables for TV projects. Because they no longer work (their MFI chip long since revoked) they are inexpensive, are labeled internally and have a strain relief grommet.
 
 If you have an IR keyboard then good for you. If not, connect your nasty old PS2 clock and data lines to pins 3 and 2 then order an IR keyboard.
 

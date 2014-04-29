@@ -54,7 +54,7 @@ The schematic is very simple:
 
 Just about any SD card or microsd card breakout will do. Some of the very cheap ones (<$1) don't have 5v to 3v3 level converters and may fry your SD card so caveat emptor. As always, Adafruit has nice ones.
 
-WebTV keyboards come in various guises: WebTV, MsnTV, Displayer, UltimateTV etc. They all should work just fine. A few places have the nice Philips variant new for $11.95 delivered. This one comes with a PS2 IR receiver and a really ugly box; more on it later.
+WebTV keyboards come in various guises: WebTV, MsnTV, Displayer, UltimateTV etc. They all should work just fine. A few places have the nice Philips variant new for $11.95 w/ free shipping (search for 'SWK-8630'). This one comes with a nice PS2 IR receiver; more on it later.
 
 <img src="https://raw.githubusercontent.com/rossumur/Zorkduino/master/docs/Keyboards.jpg" width="100%"/>
 
@@ -78,7 +78,7 @@ Samples of  Zork I, Leather Goddesses of Phobos, and Trinity
 `minizork.z3`
 A nice big chunk of Zork I that was given away with the British Commodore users' magazine "Zzap! 64" no. 67. in 1990.
 
-Copy these files to a freshly formatted sd or microsd card. You can find lots of other Zorkduino compatible games at the [Interactive Fiction Archive](http://www.ifarchive.org/).Insert the card and run the `zorkduino.ino` sketch from the [`zorkduino`](https://github.com/rossumur/Zorkduino/tree/master/zorkduino) folder. When it is all up and running, it should look like this (depending on how many games you found):
+Copy these files to a freshly formatted sd or microsd card. You can find lots of other Zorkduino compatible games at the [Interactive Fiction Archive](http://www.ifarchive.org/). Insert the card and run the `zorkduino.ino` sketch from the [`zorkduino`](https://github.com/rossumur/Zorkduino/tree/master/zorkduino) folder. When it is all up and running, it should look like this (depending on how many games you found):
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=-4dWXJrqxUk
 " target="_blank"><img src="http://img.youtube.com/vi/-4dWXJrqxUk/0.jpg" 
@@ -100,7 +100,7 @@ Active video is 308x192 pixels, 38x24 8x8 charaters. Getting this resolution req
 No homage to 70's and 80's computing would be complete without keyboard beeps and disk thweeps. Keystrokes generate a 1000hz feedback beep, sd card writes make a 3600hz mechanical click. These sounds are generated in the video isr by toggling pin 6 after a certain number of HSYNCs.
 
 ###Keyboard
-WebTV IR is an unusual UART-like asych serial protocol. It ~660 baud with 3.25 start bits, a 10 bit class code, 8 bit key code, parity and stop bit. Class codes are things like keyup, keydown etc. and key codes map physical keyboard layout. The video ISR counts HSYNCs between transitions on the IR data line and passes state change events to the keyboard code. 
+WebTV IR is an unusual UART-like asych serial protocol. It runs at ~660 baud with 3.25 start bits, a 10 bit class code, 8 bit key code, parity and stop bit. Class codes are things like keyup, keydown etc. and key codes map physical keyboard layout. The video ISR counts HSYNCs between transitions on the IR data line and passes state change events to the keyboard code. 
 
 The PS2 code is pretty conventional. A good explanation is [here](http://www.computer-engineering.org/ps2protocol/).
 

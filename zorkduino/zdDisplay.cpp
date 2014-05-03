@@ -31,9 +31,138 @@ void write_string( const prog_char *s );
 void pre_input_line();
 void write_char(int c);
 
-int codes_to_text(int, char *)
+//=================================================================
+//=================================================================
+// the following are present in the font at chars 16-23
+// ëïéà èùâê îôûç
+
+// see http://www.gnelson.demon.co.uk/zspec/sect03.html#five section 3.8.7
+
+enum {
+    F_E_DIAERESIS = 16,
+    F_I_DIAERESIS,
+    F_E_ACUTE,
+    F_A_GRAVE,
+    
+    F_E_GRAVE,
+    F_U_GRAVE,
+    F_A_CURCUMFLEX,
+    F_E_CURCUMFLEX,
+    
+    F_I_CURCUMFLEX,
+    F_O_CURCUMFLEX,
+    F_U_CURCUMFLEX,
+    F_C_CEDILLA
+};
+
+// font defined chars
+#define Z_E_DIAERESIS 164 // ë
+#define Z_I_DIAERESIS 165 // ï
+//#define Z_Y_DIAERESIS 166
+
+//#define Z_A_ACUTE 169
+#define Z_E_ACUTE 170       // é
+
+#define Z_A_GRAVE 181       // à
+#define Z_E_GRAVE 182       // è
+//#define Z_I_GRAVE 183
+//#define Z_O_GRAVE 184
+#define Z_U_GRAVE 185      // ù
+
+#define Z_A_CURCUMFLEX 191 // â
+#define Z_E_CURCUMFLEX 192 // ê
+#define Z_I_CURCUMFLEX 193 // î
+#define Z_O_CURCUMFLEX 194 // ô
+#define Z_U_CURCUMFLEX 195 // û
+
+#define Z_C_CEDILLA 213 // ç
+
+const char c155_233[] PROGMEM = {
+    'a','e',
+    'o','e',
+    'u','e',
+    'A','e',
+    'O','e',
+    'U','e',
+    's','s',
+    '>','>',
+    '<','<',
+    
+    F_E_DIAERESIS,0,  // 164	 0eb	e-diaeresis	e
+    F_I_DIAERESIS,0,  // 165	 0ef	i-diaeresis	i
+    'y',0,            // 166	 0ff	y-diaeresis	y
+    'E',0, // 167	 0cb	E-diaeresis	E
+    'I',0, // 168	 0cf	I-diaeresis	I
+    'a',0, // 169	 0e1	a-acute	a
+    F_E_ACUTE,0,//170	 0e9	e-acute	e
+    'i',0, // 171	 0ed	i-acute	i
+    'o',0, // 172	 0f3	o-acute	o
+    'u',0, // 173	 0fa	u-acute	u
+    'y',0, // 174	 0fd	y-acute	y
+    'A',0, // 175	 0c1	A-acute	A
+    'E',0, // 176	 0c9	E-acute	E
+    'I',0, // 177	 0cd	I-acute	I
+    'O',0, // 178	 0d3	O-acute	O
+    'U',0, // 179	 0da	U-acute	U
+    'Y',0, // 180	 0dd	Y-acute	Y
+    F_A_GRAVE,0,//181	 0e0	a-grave	a
+    F_E_GRAVE,0,//182	 0e8	e-grave	e
+    'i',0, // 183	 0ec	i-grave	i
+    'o',0, // 184	 0f2	o-grave	o
+    F_U_GRAVE,0,// 185	 0f9	u-grave	u
+    'A',0, // 186	 0c0	A-grave	A
+    'E',0, // 187	 0c8	E-grave	E
+    'I',0, // 188	 0cc	I-grave	I				
+    'O',0, // 189	 0d2	O-grave	O				
+    'U',0, // 190	 0d9	U-grave	U
+    
+    F_A_CURCUMFLEX,0,// 191	 0e2	a-circumflex	a
+    F_E_CURCUMFLEX,0, // 192	 0ea	e-circumflex	e
+    F_I_CURCUMFLEX,0, // 193	 0ee	i-circumflex	i
+    F_O_CURCUMFLEX,0, // 194	 0f4	o-circumflex	o
+    F_U_CURCUMFLEX,0, // 195	 0fb	u-circumflex	u
+    'A',0, // 196	 0c2	A-circumflex	A
+    'E',0, // 197	 0ca	E-circumflex	E
+    'I',0, // 198	 0ce	I-circumflex	I
+    'O',0, // 199	 0d4	O-circumflex	O
+    'U',0, //  200	 0db	U-circumflex	U
+    
+    'a',0, //  201	 0e5	a-ring	a
+    'A',0, //  202	 0c5	A-ring	A
+    'o',0, //  203	 0f8	o-slash	o
+    'O',0, //  204	 0d8	O-slash	O
+    'a',0, //  205	 0e3	a-tilde	a
+    'n',0, //  206	 0f1	n-tilde	n
+    'o',0, //  207	 0f5	o-tilde	o
+    'A',0, //  208	 0c3	A-tilde	A
+    'N',0, //  209	 0d1	N-tilde	N
+    'O',0, //  210	 0d5	O-tilde	O
+
+    'a','e',
+    'A','E',
+    F_C_CEDILLA,0,
+    't','h',
+    't','h',
+    't','h',
+    'T','h',
+    'T','h',
+    'L',0,
+    'o','e',
+    'O','E',
+    '!',0,
+    '?',0
+};
+
+// Map codes to special extra characters or nearest default translation 
+int codes_to_text(int c, char *d)
 {
-    return 1;
+    if (c < 155 || c > 233)
+        return 1;
+    const char* p = c155_233 + ((c - 155) << 1);
+    d[0] = pgm_read_byte(p++);
+    d[1] = pgm_read_byte(p);
+    d[2] = 0;
+    return 0;
 }
 
 int fit_line (const char *line_buffer, int pos, int mx)

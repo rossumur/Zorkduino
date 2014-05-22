@@ -332,6 +332,15 @@ void move_cursor(int row, int col)
     //printf("<m%d:%d>",row,col);
     current_row = row;
     current_col = col;
+    
+    // Upgrade 0 to ' '
+    char* c = screen(current_col-1,current_row-1);
+    uint8_t n = current_col-1;
+    while (n--)
+    {
+        if (!*--c)
+            *c = ' ';
+    }
 }
 
 void save_cursor_position()

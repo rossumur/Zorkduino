@@ -175,7 +175,7 @@ bool find_games(DirectoryEntry* d, int index, void* ref)
   if (n != '_' && n != '.' && d->fatname[8] == 'Z' && d->fatname[10] == ' ')
   {
     n = d->fatname[9];
-    if (n == '3' || n == '5' || n == '7')  // .z3,.z5,.z7 etc
+    if (n == '3' || n == '4' || n == '5' || n == '7')  // .z3,.z4,.z5,.z7 etc
     {
       uint8_t i;
       FindGame* fg  = (FindGame*)ref;
